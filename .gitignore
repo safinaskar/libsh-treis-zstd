@@ -1,0 +1,6 @@
+.*.kate-swp
+
+*.o
+*.a
+
+/libsh-treis-zstd.hpp
