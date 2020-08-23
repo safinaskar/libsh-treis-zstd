@@ -23,3 +23,22 @@ x_compress (std::span<std::byte> dst, std::span<const std::byte> src, int compre
   return std::span<std::byte> (dst.data (), result);
 }
 } //@
+
+//@ #include <span>
+//@ #include <cstddef>
+#include <zstd.h>
+namespace libsh_treis::zstd //@
+{ //@
+std::span<std::byte> //@
+x_decompress (std::span<std::byte> dst, std::span<const std::byte> src)//@;
+{
+  std::size_t result = ZSTD_decompress (dst.data (), dst.size (), src.data (), src.size ());
+
+  if (ZSTD_isError (result))
+    {
+      _LIBSH_TREIS_THROW_MESSAGE (ZSTD_getErrorName (result));
+    }
+
+  return std::span<std::byte> (dst.data (), result);
+}
+} //@
