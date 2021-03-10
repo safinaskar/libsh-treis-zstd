@@ -2,17 +2,17 @@ export
 
 include libsh-treis/common.mk
 
-CXX ?= c++
-AR ?= ar
+CXX = c++
+AR = ar
 
 ifeq ($(RELEASE),1)
-CPPFLAGS ?= -DNDEBUG
-CXXFLAGS ?= -O3 -g $(WARNS) -pedantic
-LDFLAGS ?= -O3 -g
+CPPFLAGS = -DNDEBUG
+CXXFLAGS = -O3 -g $(WARNS) -pedantic
+LDFLAGS = -O3 -g
 else
-CPPFLAGS ?=
-CXXFLAGS ?= -g $(WARNS) -pedantic -fsanitize=undefined,bounds,nullability,float-divide-by-zero,implicit-conversion,address -fno-sanitize-recover=all -fno-omit-frame-pointer -fsanitize-address-use-after-scope -fno-optimize-sibling-calls
-LDFLAGS ?= -g -fsanitize=undefined,bounds,nullability,float-divide-by-zero,implicit-conversion,address -fno-sanitize-recover=all -fno-omit-frame-pointer -fsanitize-address-use-after-scope -fno-optimize-sibling-calls
+CPPFLAGS =
+CXXFLAGS = -g $(WARNS) -pedantic -fsanitize=undefined,bounds,nullability,float-divide-by-zero,implicit-conversion,address -fno-sanitize-recover=all -fno-omit-frame-pointer -fsanitize-address-use-after-scope -fno-optimize-sibling-calls
+LDFLAGS = -g -fsanitize=undefined,bounds,nullability,float-divide-by-zero,implicit-conversion,address -fno-sanitize-recover=all -fno-omit-frame-pointer -fsanitize-address-use-after-scope -fno-optimize-sibling-calls
 endif
 
 all: lib.a
